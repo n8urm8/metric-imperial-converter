@@ -24,13 +24,14 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-      const regex = /[a-z]{1,3}$/i
-      let result = input.match(regex);
-      if (result == null) return null
-      //console.log('unit result: ', result[0])
-      let hasKey = Object.keys(unitsKey).includes(result[0])
-      //console.log('unit has key: ', hasKey ? result[0] : new Error('invalid unit'))
-      return hasKey ? result[0] : null;
+    const regex = /[a-z]{1,3}$/ig
+    let result = input.match(regex);
+    if (result == null) return null;
+    //console.log('unit result: ', result[0])
+    const unit = result[0].toLowerCase() == 'l' ? 'L' : result[0].toLowerCase()
+    let hasKey = Object.keys(unitsKey).includes(unit)
+    console.log('unit has key: ', Object.keys(unitsKey),  hasKey)
+    return hasKey ? unit : null;
   };
   
   this.getReturnUnit = function(initUnit) {
